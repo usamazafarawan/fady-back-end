@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 
+
+const { getConnection } = require('./controllers/services/db');
+
 const app = express();
 const port = 3000;
 
@@ -23,4 +26,15 @@ app.get('/test',(req,res)=>{
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
+})
+
+
+
+getConnection().then(()=>{
+
+    console.log('Database connection successful');
+
+}).catch((err)=>{
+    console.log('err: ', err);
+
 })
